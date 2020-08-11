@@ -1,0 +1,9 @@
+{% block content %}
+<h2>Edit Note</h2>
+
+<form method="post">
+    {{ form.csrf_token }}
+    {{ form.body  }}
+    {{ form.submit }}<br>
+</form>
+{% endblock %}
