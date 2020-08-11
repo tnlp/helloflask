@@ -6,8 +6,22 @@ from sqlalchemy.schema import CreateTable
 app=Flask(__name__)
 
 db=SQLAlchemy(app)
+"""
+# SQLite URI compatible
+WIN = sys.platform.startswith('win')
+if WIN:
+    prefix = 'sqlite:///'
+else:
+    prefix = 'sqlite:////'
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', prefix + os.path.join(app.root_path, 'data.db'))
+"""
+#app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///' + os.path.join(app.root_path, 'data.db'))
 
-app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///' + os.path.join(app.root_path, 'data.db'))
+# 配置数据库连接
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:devops@2020@127.0.0.1/demo_data'
+app.config['SQLALCHEMY_COMMIT_ON_TEARDOWN'] = True
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
+
 class Note(db.Model):
     id=db.Column(db.Integer,primary_key=True)
     body=db.Column(db.Text)
@@ -16,9 +30,9 @@ class Note(db.Model):
     
 
 @app.cli.command()
-def initdb():
+def initdb(): #flask initdb
     db.create_all()
-    print(print(CreateTable(Note.__table__)))
+    #print(print(CreateTable(Note.__table__)))
     click.echo("Initialized database.")
 
 from flask_wtf import FlaskForm
