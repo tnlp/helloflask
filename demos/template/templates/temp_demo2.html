@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+我的模板html内容 <p>{{ 'hello' | upper }}</p>
+<br/><p>{{ '%s is %d' | format('name',17) }}</p>
+<br/>{{ my_str }}
+<br/>{{ my_int }}
+<br/>{{ my_array }}
+<br/>{{ my_dict }}
+<br/> my_int + 10 的和为：{{ my_int + 10 }}
+<br/> my_int + my_array第0个值的和为：{{ my_int + my_array[0] }}
+<br/> my_array 第0个值为：{{ my_array[0] }}
+<br/> my_array 第1个值为：{{ my_array.1 }}
+<br/> my_dict 中 name 的值为：{{ my_dict['name'] }}
+<br/> my_dict 中 age 的值为：{{ my_dict.age }}
+
+</body>
+</html>
