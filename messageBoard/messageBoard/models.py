@@ -2,7 +2,9 @@ from datetime import datetime
 
 from messageBoard import db
 
-
+#flask shell
+#from messageBoard import db
+#db.create_all()
 class Message(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.String(200))

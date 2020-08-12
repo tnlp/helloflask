@@ -1,5 +1,4 @@
 #encoding=utf-8
-#https://www.cnblogs.com/xiaxiaoxu/p/10759540.html
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 
