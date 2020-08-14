@@ -1,5 +1,4 @@
 from flask import Flask,jsonify,abort,make_response,request
-#https://blog.csdn.net/fei2636/article/details/80669438
 
 app=Flask(__name__)
 
@@ -17,15 +16,16 @@ tasks = [
         'done': False
     }
 ]
-"""
+
 @app.route('/todo/api/v1.0/tasks',methods=['GET']) #curl -i http://localhost:5000/todo/api/v1.0/tasks
-def get_task():
+def get_task_0():
     return jsonify({'tasks':tasks})
-"""
+
 
 @app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['GET'])
 def get_task(task_id):
-    task = filter(lambda t: t['id'] == task_id, tasks)
+    task = list(filter(lambda t: t['id'] == task_id, tasks))  
+    print(task)
     if len(task) == 0:
         abort(404)
     return jsonify({'task': task[0]})
@@ -49,7 +49,7 @@ def create_task():
 
 @app.route('/todo/api/v1.0/tasks/<int:task_id>', methods=['DELETE'])
 def delete_task(task_id):
-    task = filter(lambda t: t['id'] == task_id, tasks)
+    task = list(filter(lambda t: t['id'] == task_id, tasks))
     if len(task) == 0:
         abort(404)
     tasks.remove(task[0])
